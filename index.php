@@ -14,7 +14,7 @@ $dayNumber = date("z");
 // list of journal prompts
 // you can add/edit/remove prompts here
 $prompts = [
-  "What felt lighter today?",
+  "What small thing brought you joy today?",
   "What did you notice that you usually miss?",
   "What made today feel human?",
   "What are you carrying gently today?",
