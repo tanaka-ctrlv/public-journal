@@ -42,7 +42,7 @@
       </p>
 
       <p class="description">
-        At the end of each Providence-based day, the current page becomes part of the archive.
+        At the end of each day (Eastern Time, GMT-5), the current page becomes part of the archive.
         A new day begins with a fresh prompt and a new shared canvas.
       </p>
 
