@@ -89,34 +89,32 @@ if (file_exists($filename)) {
       </form>
     </section>
 
-    <section class="wall">
-      <?php foreach ($entries as $entry): ?>
-        <article class="note">
-          <p class="note-message">
-            <?php echo htmlspecialchars($entry["message"]); ?>
-          </p>
+   <section class="wall" id="todayWall">
+  <?php foreach ($entries as $entry): ?>
+    <article class="note">
+      <p class="note-message">
+        <?php echo htmlspecialchars($entry["message"]); ?>
+      </p>
 
-          <p class="note-meta">
-            <?php 
-              echo htmlspecialchars($entry["name"] ?: "Anonymous"); 
-            ?>
+      <p class="note-meta">
+        <?php echo htmlspecialchars($entry["name"] ?: "Anonymous"); ?>
 
-            <?php if (!empty($entry["age"])): ?>
-              , <?php echo htmlspecialchars($entry["age"]); ?>
-            <?php endif; ?>
+        <?php if (!empty($entry["age"])): ?>
+          , <?php echo htmlspecialchars($entry["age"]); ?>
+        <?php endif; ?>
 
-            <?php if (!empty($entry["location"])): ?>
-              <br />
-              in <?php echo htmlspecialchars($entry["location"]); ?>
-            <?php endif; ?>
-          </p>
+        <?php if (!empty($entry["location"])): ?>
+          <br />
+          in <?php echo htmlspecialchars($entry["location"]); ?>
+        <?php endif; ?>
+      </p>
 
-          <p class="note-time">
-            <?php echo htmlspecialchars($entry["time"]); ?>
-          </p>
-        </article>
-      <?php endforeach; ?>
-    </section>
+      <p class="note-time">
+        <?php echo htmlspecialchars($entry["time"]); ?>
+      </p>
+    </article>
+  <?php endforeach; ?>
+</section>
   </main>
 
   <script src="script.js"></script>
