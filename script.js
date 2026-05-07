@@ -124,7 +124,7 @@ function checkForNewDay() {
 loadEntries();
 
 // then check for new notes every 5 seconds
-setInterval(loadEntries, 5000);
+// setInterval(loadEntries, 5000);
 
 // then check for midnight every 30 seconds
 setInterval(checkForNewDay, 30000);
