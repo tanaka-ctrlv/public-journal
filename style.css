@@ -110,9 +110,10 @@ button {
 
 .wall {
   position: relative;
+  min-height: 70vh;
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 18px;
   align-items: flex-start;
 }
 
