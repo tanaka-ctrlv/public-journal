@@ -51,11 +51,15 @@ if (file_exists($filename)) {
 </head>
 
 <body>
-  <nav>
+ <nav>
+  <a href="index.php" class="logo">The Public Journal</a>
+
+  <div class="nav-links">
     <a href="index.php">Today</a>
     <a href="archive.php">Archive</a>
-     <a href="about.php">About</a>
-  </nav>
+    <a href="about.php">About</a>
+  </div>
+</nav>
 
   <main>
     <section class="intro">
