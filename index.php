@@ -69,7 +69,7 @@ if (file_exists($filename)) {
     </section>
 
     <section class="submit-area">
-      <form action="save.php" method="POST" class="note-form">
+      <form action="save.php" method="POST" class="note-form" id="noteForm">
         <!-- sending today’s prompt with the form so it gets saved with each entry -->
         <input type="hidden" name="prompt" value="<?php echo htmlspecialchars($prompt); ?>" />
 
