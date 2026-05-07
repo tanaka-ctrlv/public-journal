@@ -251,3 +251,47 @@ button {
   color: #8c285c;
   max-width: 900px;
 }
+
+/* about page spacing */
+.about-page {
+  max-width: 900px;
+}
+
+/* the dropdown container */
+.tech-details {
+  margin-top: 40px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+}
+
+/* the clickable dropdown label */
+.tech-details summary {
+  cursor: pointer;
+  color: #8c285c;
+  font-size: 22px;
+  font-family: Georgia, serif;
+}
+
+/* the text inside the dropdown */
+.tech-copy {
+  margin-top: 20px;
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+/* inline code styling */
+code {
+  background: rgba(140, 40, 92, 0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* code block styling */
+pre {
+  overflow-x: auto;
+  background: rgba(140, 40, 92, 0.08);
+  padding: 16px;
+  border-radius: 12px;
+}
