@@ -18,6 +18,7 @@ rsort($files);
   <nav>
     <a href="index.php">Today</a>
     <a href="archive.php">Archive</a>
+     <a href="about.php">About</a>
   </nav>
 
   <main>
