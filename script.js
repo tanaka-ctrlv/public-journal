@@ -65,8 +65,10 @@ function createNote(entry) {
   const rotation = Math.random() * 8 - 4;
 
   // random x/y offset for scattered placement
-  const x = Math.random() * 60 - 30;
-  const y = Math.random() * 50 - 25;
+  //const x = Math.random() * 60 - 30;
+  //const y = Math.random() * 50 - 25;
+    const x = 0;
+    const y = 0;
 
   note.style.setProperty("--rotation", `${rotation}deg`);
   note.style.setProperty("--x", `${x}px`);

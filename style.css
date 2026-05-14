@@ -57,48 +57,56 @@ nav a {
   align-items: center;
 }
 
-.weekly-sticky-note {
+.left-panel {
   position: fixed;
-
-  /* sits just below the nav/logo area */
-  top: 78px;
+  top: 82px;
   left: 28px;
+  bottom: 24px;
 
+  width: 360px;
   z-index: 9;
 
-  width: 260px;
-  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  /* important: lets the expanded form go beyond the left panel */
+  overflow: visible;
+
+  padding-right: 8px;
+}
+
+.weekly-sticky-note {
+  width: 100%;
+  padding: 34px 32px;
 
   background: var(--mint);
   color: var(--text);
 
-  box-shadow: 0 10px 22px rgba(74, 66, 70, 0.14);
+  box-shadow: 0 14px 28px rgba(74, 66, 70, 0.12);
   transform: rotate(-1.2deg);
 
   font-family: "Caveat", cursive;
-  font-size: 22px;
-  line-height: 1.15;
+  line-height: 1.25;
 }
 
-.weekly-sticky-note .eyebrow {
-  margin-top: 0;
-  margin-bottom: 12px;
+.sticky-main {
+  margin: 0 0 28px;
+
+  font-size: 32px;
+  line-height: 1.25;
+
+  color: var(--text);
+}
+
+.sticky-reminder {
+  margin: 0;
+
+  font-size: 34px;
+  line-height: 1.2;
+
   color: var(--accent);
-  opacity: 0.8;
-
-  font-family: "Caveat", cursive;
-  font-size: 24px;
-  line-height: 1.1;
-}
-
-.weekly-sticky-note p {
-  margin: 0 0 12px;
-}
-
-.weekly-sticky-note .week-note {
-  margin-bottom: 0;
-  font-size: 18px;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 main {
@@ -133,14 +141,10 @@ h1 {
 /* the area that holds the add-yours form */
 /* this makes the form behave like a foreground object */
 .submit-area {
-  position: fixed;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
-  z-index: 8;
-
-  width: min(560px, 90vw);
+  position: relative;
+  width: 100%;
   margin: 0;
+  z-index: 8;
 }
 
 /* the blank page where the user writes their entry */
@@ -148,6 +152,9 @@ h1 {
   width: 100%;
   min-height: 430px;
   padding: 40px 36px;
+  position: relative;
+  padding-left: 58px;
+  transform-origin: bottom left;
 
   /* paper color */
   background: var(--soft-white);
@@ -180,35 +187,70 @@ h1 {
     box-shadow 0.45s ease;
 }
 
+/* .note-form::before {
+  content: "";
+
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  left: 18px;
+
+  width: 18px;
+
+  background-image:
+    radial-gradient(
+      circle,
+      var(--page-bg) 0px,
+      var(--page-bg) 5px,
+      rgba(74, 66, 70, 0.18) 5.5px,
+      rgba(74, 66, 70, 0.18) 6.5px,
+      transparent 7px
+    );
+
+  background-size: 18px 38px;
+  background-repeat: repeat-y;
+  background-position: center top;
+
+  pointer-events: none;
+}
+*/
+
 .note-form.is-collapsed {
+  width: 100%;
   min-height: 260px;
   max-height: 320px;
+  transform:
+  translateX(40px)
+  translateY(-40px);
   cursor: text;
 }
 
 .note-form.is-expanded {
+  /* this lets it grow beyond the left column */
+  width: min(620px, calc(100vw - 56px));
+
   min-height: 560px;
   max-height: 760px;
-  transform: rotate(-0.6deg) translateY(-24px);
+
+  transform: rotate(-0.6deg) 
+  translateX(200px)
+  translateY(-400px);
   box-shadow: 0 24px 52px rgba(74, 66, 70, 0.24);
 }
 
 textarea {
   width: 100%;
-  height: 190px;
+  height: 150px;
   border: none;
   resize: none;
   background: transparent;
-
   color: var(--accent);
-
-  /* this gives the written text a softer journal feel */
-  /*font-family: Georgia, "Times New Roman", serif;*/
   font-family: "Caveat", cursive;
-  font-size: 27px;
+  font-size: 24px;
   line-height: 32px;
-
   outline: none;
+
+  padding-left: 12px;
 }
 
 .note-form.is-collapsed textarea {
@@ -217,6 +259,46 @@ textarea {
 
 .note-form.is-expanded textarea {
   height: 190px;
+}
+
+.textarea-shell {
+  position: relative;
+}
+
+/* fake blinking cursor before the placeholder text */
+.textarea-shell::before {
+  content: "";
+
+  position: absolute;
+  top: 4px;
+  left: 0;
+
+  width: 2px;
+  height: 32px;
+
+  background: var(--accent);
+  opacity: 0.8;
+
+  animation: blinkCursor 1s steps(2, start) infinite;
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* once someone clicks into the textarea, the real cursor takes over */
+.textarea-shell:focus-within::before {
+  opacity: 0;
+}
+
+/* blinking animation */
+@keyframes blinkCursor {
+  0%, 45% {
+    opacity: 0.8;
+  }
+
+  46%, 100% {
+    opacity: 0;
+  }
 }
 
 .form-extra-fields {
@@ -297,75 +379,111 @@ button {
 
   min-height: 100vh;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
 
-  gap: 28px;
+  align-items: start;
+}
 
-  /* this gives the notes room to exist behind/around the form */
-  padding-top: 40px;
-  padding-bottom: 220px;
+.entries-area {
+  margin-left: 480px;
+  padding: 70px 6vw 70px 0;
 }
 
 .journal-board {
   position: relative;
   min-height: 120vh;
-  padding-top: 80px;
-  padding-bottom: 560px;
+  padding-bottom: 160px;
 }
 
 /* each submitted entry becomes a journal page */
 .note {
-  width: 280px;
-  min-height: 300px;
-  padding: 34px 30px;
+  position: relative;
 
-  background: var(--cream);
+  width: 260px;
+  min-height: 240px;
 
-  box-shadow: 0 10px 24px rgba(74, 66, 70, 0.13);
+  /* extra left padding so the writing doesn't sit on top of the holes */
+  padding: 28px 28px 28px 52px;
 
-  transform:
-    translate(var(--x), var(--y))
-    rotate(var(--rotation));
+  /* default paper color */
+  background-color: var(--cream);
 
-  border: 10px solid white;
-
-  /* lined paper effect on each collected note */
+  /* lined paper effect */
   background-image:
     linear-gradient(
       to bottom,
       transparent 0px,
       transparent 31px,
-      rgba(143, 95, 120, 0.15) 32px
+      rgba(143, 95, 120, 0.14) 32px
     );
 
   background-size: 100% 32px;
+
+  box-shadow: 0 10px 18px rgba(74, 66, 70, 0.14);
+
+  transform:
+    translate(var(--x), var(--y))
+    rotate(var(--rotation));
 }
 
+.note::before {
+  content: "";
+
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 16px;
+
+  width: 20px;
+
+  background-image:
+    radial-gradient(
+      circle,
+      var(--page-bg) 0px,
+      var(--page-bg) 4.5px,
+
+      /* inner shadow/rim of the punched hole */
+      rgba(74, 66, 70, 0.28) 5px,
+      rgba(74, 66, 70, 0.28) 6px,
+
+      /* soft paper highlight around the edge */
+      rgba(255, 255, 255, 0.7) 6.5px,
+      rgba(255, 255, 255, 0.7) 7px,
+
+      transparent 7.5px
+    );
+
+  background-size: 20px 38px;
+  background-repeat: repeat-y;
+  background-position: center top;
+
+  pointer-events: none;
+}
 /* rotating through all sticky-note colors */
 .note:nth-child(6n + 1) {
-  background: var(--cream);
+  background-color: var(--cream);
 }
 
 .note:nth-child(6n + 2) {
-  background: var(--mint);
+  background-color: var(--mint);
 }
 
 .note:nth-child(6n + 3) {
-  background: var(--blue);
+  background-color: var(--blue);
 }
 
 .note:nth-child(6n + 4) {
-  background: var(--lavender);
+  background-color: var(--lavender);
 }
 
 .note:nth-child(6n + 5) {
-  background: var(--pink);
+  background-color: var(--pink);
 }
 
 .note:nth-child(6n + 6) {
-  background: var(--peach);
+  background-color: var(--peach);
 }
 
 .note-message {
@@ -542,4 +660,23 @@ pre {
   background: rgba(219, 205, 240, 0.45);
   padding: 16px;
   border-radius: 12px;
+}
+
+/* mobile responsiveness */
+@media (max-width: 900px) {
+  .left-panel {
+    position: static;
+    width: auto;
+    margin: 24px 6vw;
+    padding-right: 0;
+  }
+
+  .entries-area {
+    margin-left: 0;
+    padding: 40px 6vw 80px;
+  }
+
+  .wall {
+    grid-template-columns: 1fr;
+  }
 }

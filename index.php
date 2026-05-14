@@ -37,24 +37,55 @@ $entries = $journal["entries"];
 
 </nav>
 
-<section class="weekly-sticky-note">
-  <p> This is a collective journaling community.
-    Leave your own small trace from today, and see how others are moving through the week.</p>
-
-  <p class="eyebrow">
-    Come back every Monday for a new prompt :)
+<section class="left-panel">
+  <section class="weekly-sticky-note">
+  <p class="sticky-main">
+    This is a collective journaling community. Leave your own small trace from today,
+    and see how others are moving through the week.
   </p>
 
- <!-- <p class="week-note">
-    Open from 
-    <?php echo htmlspecialchars($weekData["weekStart"]); ?> 
-    to 
-    <?php echo htmlspecialchars($weekData["weekEnd"]); ?>.
-  </p> 
-    -->
+  <p class="sticky-reminder">
+    come back every monday<br />
+    for a new prompt :)
+  </p>
 </section>
 
- <main>
+  <section class="submit-area">
+    <form action="save.php" method="POST" class="note-form is-collapsed" id="noteForm">
+      <input type="hidden" name="prompt" value="<?php echo htmlspecialchars($prompt); ?>" />
+
+      <p class="form-eyebrow">this week’s prompt is...</p>
+
+      <h2 class="form-prompt">
+        <?php echo htmlspecialchars($prompt); ?>
+      </h2>
+
+     <div class="textarea-shell">
+  <textarea 
+    id="messageInput"
+    name="message" 
+    placeholder="write a few words from today..." 
+    required></textarea>
+</div>
+
+      <div class="form-extra-fields">
+        <input type="text" name="name" placeholder="name / nickname (optional)" />
+
+        <div class="small-inputs">
+          <input type="text" name="color" placeholder="today i feel like the color..." />
+          <input type="text" name="location" placeholder="town/city + country (optional)" />
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit">add to today</button>
+          <button type="button" class="secondary-button" id="collapseForm">minimize</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</section>
+
+<main class="entries-area">
   <section class="journal-board">
     <section class="wall" id="todayWall">
       <?php foreach ($entries as $entry): ?>
@@ -66,8 +97,9 @@ $entries = $journal["entries"];
           <p class="note-meta">
             <?php echo htmlspecialchars($entry["name"] ?: "Anonymous"); ?>
 
-            <?php if (!empty($entry["age"])): ?>
-              , <?php echo htmlspecialchars($entry["age"]); ?>
+            <?php if (!empty($entry["color"])): ?>
+              <br />
+              feeling like <?php echo htmlspecialchars($entry["color"]); ?>
             <?php endif; ?>
 
             <?php if (!empty($entry["location"])): ?>
@@ -81,38 +113,6 @@ $entries = $journal["entries"];
           </p>
         </article>
       <?php endforeach; ?>
-    </section>
-
-    <section class="submit-area">
-      <form action="save.php" method="POST" class="note-form is-collapsed" id="noteForm">
-  <input type="hidden" name="prompt" value="<?php echo htmlspecialchars($prompt); ?>" />
-
-  <p class="form-eyebrow">this week’s prompt is...</p>
-
-  <h2 class="form-prompt">
-    <?php echo htmlspecialchars($prompt); ?>
-  </h2>
-
-  <textarea 
-    id="messageInput"
-    name="message" 
-    placeholder="write a few words from today..." 
-    required></textarea>
-
-  <div class="form-extra-fields">
-    <input type="text" name="name" placeholder="name / nickname (optional)" />
-
-    <div class="small-inputs">
-      <input type="text" name="age" placeholder="today i feel like the color..." />
-      <input type="text" name="location" placeholder="town/city + country" />
-    </div>
-
-    <div class="form-buttons">
-      <button type="submit">add to today</button>
-      <button type="button" class="secondary-button" id="collapseForm">minimize</button>
-    </div>
-  </div>
-</form>
     </section>
   </section>
 </main>

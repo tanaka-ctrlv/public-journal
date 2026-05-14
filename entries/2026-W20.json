@@ -1,17 +1,144 @@
 {
-    "weekKey": "2026-W20",
-    "weekStart": "2026-05-11",
-    "weekEnd": "2026-05-17",
-    "prompt": "What small thing brought you joy today?",
-    "entries": [
-        {
-            "prompt": "What small thing brought you joy today?",
-            "message": "I lived to see another day. I felt uplifted when I heard the birds already singing this morning at, like, 4:30am",
-            "name": "sunshinesummer23",
-            "age": "baby blue",
-            "location": "harare, zimbabwe",
-            "date": "2026-05-14",
-            "time": "Thu, May 14, 7:35 AM"
-        }
-    ]
+  "weekKey": "2026-W20",
+  "weekStart": "2026-05-11",
+  "weekEnd": "2026-05-17",
+  "prompt": "What small thing brought you joy today?",
+  "entries": [
+   
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "A stranger smiled at me while I was crossing the street, and for some reason it made the whole morning feel softer.",
+      "name": "Maya",
+      "color": "pale yellow",
+      "location": "Providence, United States",
+      "date": "2026-05-11",
+      "time": "Mon, May 11, 9:14 AM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I made tea and actually waited for it to cool down instead of rushing. Tiny victory.",
+      "name": "T",
+      "color": "warm peach",
+      "location": "Harare, Zimbabwe",
+      "date": "2026-05-11",
+      "time": "Mon, May 11, 11:03 AM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "The light on my desk looked like a little square of honey.",
+      "name": "Anonymous",
+      "color": "soft gold",
+      "location": "Cape Town, South Africa",
+      "date": "2026-05-11",
+      "time": "Mon, May 11, 1:27 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "Someone held the elevator for me even though I was definitely too far away.",
+      "name": "Jo",
+      "color": "mint green",
+      "location": "London, United Kingdom",
+      "date": "2026-05-12",
+      "time": "Tue, May 12, 8:46 AM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I heard someone laughing really hard outside and it reminded me that people are still having good moments.",
+      "name": "Nia",
+      "color": "sky blue",
+      "location": "Paris, France",
+      "date": "2026-05-12",
+      "time": "Tue, May 12, 12:22 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I finished one small task I had been avoiding, and suddenly the day felt less impossible.",
+      "name": "Sam",
+      "color": "lavender",
+      "location": "New Delhi, India",
+      "date": "2026-05-12",
+      "time": "Tue, May 12, 4:08 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "The first bite of my lunch was better than expected.",
+      "name": "Lulu",
+      "color": "butter yellow",
+      "location": "Sydney, Australia",
+      "date": "2026-05-13",
+      "time": "Wed, May 13, 12:51 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "My friend sent me a voice note instead of texting. I didn’t realize how much I missed hearing people’s voices.",
+      "name": "K",
+      "color": "soft pink",
+      "location": "Accra, Ghana",
+      "date": "2026-05-13",
+      "time": "Wed, May 13, 3:19 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I saw a dog wearing a tiny raincoat and honestly that was enough.",
+      "name": "Anonymous",
+      "color": "blue-gray",
+      "location": "Toronto, Canada",
+      "date": "2026-05-13",
+      "time": "Wed, May 13, 6:41 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "My playlist shuffled into the exact song I needed while I was walking home.",
+      "name": "Eli",
+      "color": "deep orange",
+      "location": "Lagos, Nigeria",
+      "date": "2026-05-14",
+      "time": "Thu, May 14, 9:35 AM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I cleaned one corner of my room and now that corner feels like it’s rooting for me.",
+      "name": "Rue",
+      "color": "cream",
+      "location": "Nairobi, Kenya",
+      "date": "2026-05-14",
+      "time": "Thu, May 14, 1:02 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "The rain made everything quieter for a while.",
+      "name": "A.",
+      "color": "pale blue",
+      "location": "Boston, United States",
+      "date": "2026-05-14",
+      "time": "Thu, May 14, 2:47 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "Someone complimented my notebook and it made me want to write in it again.",
+      "name": "Dee",
+      "color": "lilac",
+      "location": "Kampala, Uganda",
+      "date": "2026-05-14",
+      "time": "Thu, May 14, 5:06 PM"
+    },
+    {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I looked up from my screen and noticed the sky changing color. It felt like the day was leaving a note.",
+      "name": "Anonymous",
+      "color": "peach-pink",
+      "location": "Johannesburg, South Africa",
+      "date": "2026-05-14",
+      "time": "Thu, May 14, 7:32 PM"
+    },
+     {
+      "prompt": "What small thing brought you joy today?",
+      "message": "I lived to see another day. I felt uplifted when I heard the birds already singing this morning at, like, 4:30am.",
+      "name": "sunshinesummer23",
+      "color": "baby blue",
+      "location": "Harare, Zimbabwe",
+      "date": "2026-05-14",
+      "time": "Thu, May 14, 7:35 AM"
+    }
+  ]
 }
