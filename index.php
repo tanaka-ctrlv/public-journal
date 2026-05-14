@@ -1,42 +1,16 @@
 <?php
-// setting the timezone to providence / eastern time
-// this means the site day resets according to pvd time
-date_default_timezone_set("America/New_York");
+// pulling in the shared weekly prompt/archive logic
+require_once "config.php";
 
-// today's date in YYYY-MM-DD format
-// this becomes the name of today's json file
-$today = date("Y-m-d");
+// getting this week’s information
+$weekData = getCurrentWeekData($promptChangeDay, $prompts);
 
-// day number of the year, from 0–365
-// we'll use this to rotate through the prompt array
-$dayNumber = date("z");
+// loading this week’s journal file
+$journal = loadWeeklyJournal($weekData);
 
-// list of journal prompts
-// you can add/edit/remove prompts here
-$prompts = [
-  "What small thing brought you joy today?",
-  "What did you notice that you usually miss?",
-  "What made today feel human?",
-  "What are you carrying gently today?",
-  "Where did your mind wander today?",
-  "What gave you a little bit of hope?",
-  "What is one small thing you want to remember from today?"
-];
-
-// choosing one prompt based on the day of the year
-// the % symbol loops through the prompt list without going out of range
-$prompt = $prompts[$dayNumber % count($prompts)];
-
-// path to today's entries file
-$filename = "entries/" . $today . ".json";
-
-// if today's json file exists, load it
-if (file_exists($filename)) {
-  $entries = json_decode(file_get_contents($filename), true);
-} else {
-  // if there is no file yet, start with an empty array
-  $entries = [];
-}
+// pulling out the pieces we need for the page
+$prompt = $journal["prompt"];
+$entries = $journal["entries"];
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +24,7 @@ if (file_exists($filename)) {
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body data-week-key="<?php echo htmlspecialchars($weekData["weekKey"]); ?>">
  <nav>
   <a href="index.php" class="logo">The Public Journal</a>
 
@@ -63,15 +37,23 @@ if (file_exists($filename)) {
 
   <main>
     <section class="intro">
-      <p class="eyebrow">today’s journal prompt is…</p>
+  <p class="eyebrow">this week’s journal prompt is…</p>
 
-      <h1><?php echo $prompt; ?></h1>
+  <h1><?php echo htmlspecialchars($prompt); ?></h1>
 
-      <p class="description">
-        Write a few words or sentences. No pressure to make it polished.
-        At the end of the day, today’s page becomes part of the archive.
-      </p>
-    </section>
+  <p class="description">
+    Write a few words or sentences. No pressure to make it polished.
+    This shared page stays open for the week, then becomes part of the archive.
+  </p>
+
+  <p class="week-note">
+    This prompt is open from 
+    <?php echo htmlspecialchars($weekData["weekStart"]); ?> 
+    to 
+    <?php echo htmlspecialchars($weekData["weekEnd"]); ?>. 
+    Come back every Monday for a new prompt.
+  </p>
+</section>
 
     <section class="submit-area">
       <form action="save.php" method="POST" class="note-form" id="noteForm">

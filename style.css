@@ -86,30 +86,72 @@ h1 {
   margin-top: 24px;
 }
 
+/* the area that holds the add-yours form */
+/* this makes the form behave like a foreground object */
 .submit-area {
+  position: sticky;
+  bottom: 32px;
+  z-index: 8;
+
+  width: min(520px, 90vw);
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 70px;
 }
 
+/* the blank page where the user writes their entry */
 .note-form {
-  width: min(520px, 100%);
-  min-height: 420px;
-  padding: 36px;
-  background: var(--pink);
-  box-shadow: 0 12px 24px rgba(74, 66, 70, 0.14);
-  transform: rotate(-1deg);
+  width: 100%;
+  min-height: 430px;
+  padding: 40px 36px;
+
+  /* paper color */
+  background: var(--soft-white);
+
+  /* subtle page shadow */
+  box-shadow: 0 18px 38px rgba(74, 66, 70, 0.18);
+
+  /* slight tilt so it feels placed, not perfectly digital */
+  transform: rotate(-0.6deg);
+
+  /* this gives us a paper-like page edge */
+  border: 12px solid white;
+
+  /* lined paper effect */
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      rgba(143, 95, 120, 0.18) 32px
+    );
+
+  background-size: 100% 32px;
 }
 
 textarea {
   width: 100%;
-  height: 180px;
+  height: 190px;
   border: none;
   resize: none;
   background: transparent;
+
   color: var(--accent);
-  font-family: Georgia, serif;
-  font-size: 28px;
-  line-height: 1.15;
+
+  /* this gives the written text a softer journal feel */
+  /*font-family: Georgia, "Times New Roman", serif;*/
+  font-family: "Caveat", cursive;
+  font-size: 27px;
+  line-height: 32px;
+
   outline: none;
+}
+
+.note-message {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  line-height: 32px;
+  color: var(--accent);
 }
 
 textarea::placeholder,
@@ -144,25 +186,51 @@ button {
   cursor: pointer;
 }
 
+/* the wall where all entries collect */
+/* this now starts higher and fills downward like pages gathering */
 .wall {
   position: relative;
-  min-height: 70vh;
+  z-index: 1;
+
+  min-height: 100vh;
+
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
   align-items: flex-start;
+
+  gap: 28px;
+
+  /* this gives the notes room to exist behind/around the form */
+  padding-top: 40px;
+  padding-bottom: 220px;
 }
 
+/* each submitted entry becomes a journal page */
 .note {
-  width: 260px;
-  min-height: 240px;
-  padding: 28px;
-  background: var(--mint);
-  box-shadow: 0 10px 18px rgba(74, 66, 70, 0.14);
+  width: 280px;
+  min-height: 300px;
+  padding: 34px 30px;
+
+  background: var(--cream);
+
+  box-shadow: 0 10px 24px rgba(74, 66, 70, 0.13);
 
   transform:
     translate(var(--x), var(--y))
     rotate(var(--rotation));
+
+  border: 10px solid white;
+
+  /* lined paper effect on each collected note */
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      rgba(143, 95, 120, 0.15) 32px
+    );
+
+  background-size: 100% 32px;
 }
 
 /* rotating through all sticky-note colors */

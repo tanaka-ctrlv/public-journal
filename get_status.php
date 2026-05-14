@@ -1,3 +1,4 @@
+//This lets JavaScript check whether a new week has started
 <?php
 // pulling in shared weekly logic
 require_once "config.php";
@@ -8,9 +9,6 @@ header("Content-Type: application/json");
 // getting the current week
 $weekData = getCurrentWeekData($promptChangeDay, $prompts);
 
-// loading this week’s journal
-$journal = loadWeeklyJournal($weekData);
-
-// sending only the entries to javascript
-echo json_encode($journal["entries"]);
+// sending week info back to javascript
+echo json_encode($weekData);
 ?>

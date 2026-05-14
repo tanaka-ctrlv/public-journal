@@ -22,5 +22,13 @@
         "age": "27",
         "location": "Cape Town, South Africa",
         "time": "9:55 AM"
+    },
+    {
+        "prompt": "What small thing brought you joy today?",
+        "message": "i woke up today",
+        "name": "tanaka",
+        "age": "\ud83d\udc40",
+        "location": "Providence, RI, USA",
+        "time": "10:14 AM"
     }
 ]

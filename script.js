@@ -2,11 +2,9 @@
 const form = document.querySelector("#noteForm");
 const wall = document.querySelector("#todayWall");
 
-// storing the current date when the page first loads
-// later, we compare this with the real current date to detect midnight
-let currentDate = new Date().toLocaleDateString("en-CA", {
-  timeZone: "America/New_York"
-});
+// storing the current week key from the body tag
+// php puts this into the html when the page loads
+let currentWeekKey = document.body.dataset.weekKey || null;
 
 
 // this function escapes user text before putting it into html
@@ -104,13 +102,17 @@ if (form) {
 }
 
 
-// checks whether providence has moved into a new day
-function checkForNewDay() {
-  const newDate = new Date().toLocaleDateString("en-CA", {
-    timeZone: "America/New_York"
-  });
+// checks whether providence has moved into a new journal week
+async function checkForNewWeek() {
+  // if this page does not have a week key, stop here
+  if (!currentWeekKey) return;
 
-  if (newDate !== currentDate) {
+  // asking php what the current week is
+  const response = await fetch("get_status.php");
+  const status = await response.json();
+
+  // if the week has changed, fade out and reload
+  if (status.weekKey !== currentWeekKey) {
     document.body.classList.add("midnight-reset");
 
     setTimeout(() => {
@@ -127,4 +129,4 @@ loadEntries();
 // setInterval(loadEntries, 5000);
 
 // then check for midnight every 30 seconds
-setInterval(checkForNewDay, 30000);
+setInterval(checkForNewWeek, 30000);

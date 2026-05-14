@@ -17,10 +17,14 @@
 <body>
   <!-- main navigation for moving between pages -->
   <nav>
+  <a href="index.php" class="logo">The Public Journal</a>
+
+  <div class="nav-links">
     <a href="index.php">Today</a>
     <a href="archive.php">Archive</a>
     <a href="about.php">About</a>
-  </nav>
+  </div>
+</nav>
 
   <main>
     <!-- intro section for the about page -->
