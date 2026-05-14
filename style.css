@@ -57,6 +57,50 @@ nav a {
   align-items: center;
 }
 
+.weekly-sticky-note {
+  position: fixed;
+
+  /* sits just below the nav/logo area */
+  top: 78px;
+  left: 28px;
+
+  z-index: 9;
+
+  width: 260px;
+  padding: 20px 22px;
+
+  background: var(--mint);
+  color: var(--text);
+
+  box-shadow: 0 10px 22px rgba(74, 66, 70, 0.14);
+  transform: rotate(-1.2deg);
+
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.weekly-sticky-note .eyebrow {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--accent);
+  opacity: 0.8;
+
+  font-family: "Caveat", cursive;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.weekly-sticky-note p {
+  margin: 0 0 12px;
+}
+
+.weekly-sticky-note .week-note {
+  margin-bottom: 0;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
 main {
   padding: 70px 6vw;
 }
@@ -89,14 +133,14 @@ h1 {
 /* the area that holds the add-yours form */
 /* this makes the form behave like a foreground object */
 .submit-area {
-  position: sticky;
-  bottom: 32px;
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
   z-index: 8;
 
-  width: min(520px, 90vw);
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 70px;
+  width: min(560px, 90vw);
+  margin: 0;
 }
 
 /* the blank page where the user writes their entry */
@@ -127,6 +171,26 @@ h1 {
     );
 
   background-size: 100% 32px;
+
+  overflow: hidden;
+  transition:
+    min-height 0.45s ease,
+    max-height 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.note-form.is-collapsed {
+  min-height: 260px;
+  max-height: 320px;
+  cursor: text;
+}
+
+.note-form.is-expanded {
+  min-height: 560px;
+  max-height: 760px;
+  transform: rotate(-0.6deg) translateY(-24px);
+  box-shadow: 0 24px 52px rgba(74, 66, 70, 0.24);
 }
 
 textarea {
@@ -147,8 +211,47 @@ textarea {
   outline: none;
 }
 
+.note-form.is-collapsed textarea {
+  height: 70px;
+}
+
+.note-form.is-expanded textarea {
+  height: 190px;
+}
+
+.form-extra-fields {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.note-form.is-collapsed .form-extra-fields {
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+}
+
+.note-form.is-expanded .form-extra-fields {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.form-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.secondary-button {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(143, 95, 120, 0.35);
+}
+
 .note-message {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Caveat", cursive;
   font-size: 23px;
   line-height: 32px;
   color: var(--accent);
@@ -203,6 +306,13 @@ button {
   /* this gives the notes room to exist behind/around the form */
   padding-top: 40px;
   padding-bottom: 220px;
+}
+
+.journal-board {
+  position: relative;
+  min-height: 120vh;
+  padding-top: 80px;
+  padding-bottom: 560px;
 }
 
 /* each submitted entry becomes a journal page */

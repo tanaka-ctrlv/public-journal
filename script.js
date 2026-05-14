@@ -18,6 +18,43 @@ function escapeHTML(text) {
     .replaceAll("'", "&#039;");
 }
 
+// grabbing the textarea inside the journal form
+const messageInput = document.querySelector("#messageInput");
+
+// grabbing the minimize button
+const collapseFormButton = document.querySelector("#collapseForm");
+
+
+// expands the add-yours journal page
+function expandJournalForm() {
+  if (!form) return;
+
+  form.classList.remove("is-collapsed");
+  form.classList.add("is-expanded");
+}
+
+
+// collapses the add-yours journal page
+function collapseJournalForm() {
+  if (!form) return;
+
+  form.classList.remove("is-expanded");
+  form.classList.add("is-collapsed");
+}
+
+
+// when someone clicks into the writing area, expand the page
+if (messageInput) {
+  messageInput.addEventListener("focus", expandJournalForm);
+  messageInput.addEventListener("click", expandJournalForm);
+}
+
+
+// minimize button closes the page again
+if (collapseFormButton) {
+  collapseFormButton.addEventListener("click", collapseJournalForm);
+}
+
 
 // creates one sticky note from one entry object
 function createNote(entry) {
@@ -94,10 +131,11 @@ if (form) {
 
     const result = await response.json();
 
-    if (result.success) {
-      form.reset();
-      loadEntries();
-    }
+   if (result.success) {
+  form.reset();
+  loadEntries();
+  collapseJournalForm();
+}
   });
 }
 

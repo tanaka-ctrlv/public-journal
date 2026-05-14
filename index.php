@@ -35,74 +35,87 @@ $entries = $journal["entries"];
   </div>
 </nav>
 
-  <main>
-    <section class="intro">
-  <p class="eyebrow">this week’s journal prompt is…</p>
+</nav>
 
-  <h1><?php echo htmlspecialchars($prompt); ?></h1>
+<section class="weekly-sticky-note">
+  <p> This is a collective journaling community.
+    Leave your own small trace from today, and see how others are moving through the week.</p>
 
-  <p class="description">
-    Write a few words or sentences. No pressure to make it polished.
-    This shared page stays open for the week, then becomes part of the archive.
+  <p class="eyebrow">
+    Come back every Monday for a new prompt :)
   </p>
 
-  <p class="week-note">
-    This prompt is open from 
+ <!-- <p class="week-note">
+    Open from 
     <?php echo htmlspecialchars($weekData["weekStart"]); ?> 
     to 
-    <?php echo htmlspecialchars($weekData["weekEnd"]); ?>. 
-    Come back every Monday for a new prompt.
-  </p>
+    <?php echo htmlspecialchars($weekData["weekEnd"]); ?>.
+  </p> 
+    -->
 </section>
 
-    <section class="submit-area">
-      <form action="save.php" method="POST" class="note-form" id="noteForm">
-        <!-- sending today’s prompt with the form so it gets saved with each entry -->
-        <input type="hidden" name="prompt" value="<?php echo htmlspecialchars($prompt); ?>" />
+ <main>
+  <section class="journal-board">
+    <section class="wall" id="todayWall">
+      <?php foreach ($entries as $entry): ?>
+        <article class="note">
+          <p class="note-message">
+            <?php echo htmlspecialchars($entry["message"]); ?>
+          </p>
 
-        <textarea 
-          name="message" 
-          placeholder="write a few words from today..." 
-          required></textarea>
+          <p class="note-meta">
+            <?php echo htmlspecialchars($entry["name"] ?: "Anonymous"); ?>
 
-        <input type="text" name="name" placeholder="name / nickname (optional)" />
+            <?php if (!empty($entry["age"])): ?>
+              , <?php echo htmlspecialchars($entry["age"]); ?>
+            <?php endif; ?>
 
-        <div class="small-inputs">
-          <input type="text" name="age" placeholder="age (optional)" />
-          <input type="text" name="location" placeholder="location (optional)" />
-        </div>
+            <?php if (!empty($entry["location"])): ?>
+              <br />
+              in <?php echo htmlspecialchars($entry["location"]); ?>
+            <?php endif; ?>
+          </p>
 
-        <button type="submit">add to today</button>
-      </form>
+          <p class="note-time">
+            <?php echo htmlspecialchars($entry["time"]); ?>
+          </p>
+        </article>
+      <?php endforeach; ?>
     </section>
 
-   <section class="wall" id="todayWall">
-  <?php foreach ($entries as $entry): ?>
-    <article class="note">
-      <p class="note-message">
-        <?php echo htmlspecialchars($entry["message"]); ?>
-      </p>
+    <section class="submit-area">
+      <form action="save.php" method="POST" class="note-form is-collapsed" id="noteForm">
+  <input type="hidden" name="prompt" value="<?php echo htmlspecialchars($prompt); ?>" />
 
-      <p class="note-meta">
-        <?php echo htmlspecialchars($entry["name"] ?: "Anonymous"); ?>
+  <p class="form-eyebrow">this week’s prompt is...</p>
 
-        <?php if (!empty($entry["age"])): ?>
-          , <?php echo htmlspecialchars($entry["age"]); ?>
-        <?php endif; ?>
+  <h2 class="form-prompt">
+    <?php echo htmlspecialchars($prompt); ?>
+  </h2>
 
-        <?php if (!empty($entry["location"])): ?>
-          <br />
-          in <?php echo htmlspecialchars($entry["location"]); ?>
-        <?php endif; ?>
-      </p>
+  <textarea 
+    id="messageInput"
+    name="message" 
+    placeholder="write a few words from today..." 
+    required></textarea>
 
-      <p class="note-time">
-        <?php echo htmlspecialchars($entry["time"]); ?>
-      </p>
-    </article>
-  <?php endforeach; ?>
-</section>
-  </main>
+  <div class="form-extra-fields">
+    <input type="text" name="name" placeholder="name / nickname (optional)" />
+
+    <div class="small-inputs">
+      <input type="text" name="age" placeholder="today i feel like the color..." />
+      <input type="text" name="location" placeholder="town/city + country" />
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit">add to today</button>
+      <button type="button" class="secondary-button" id="collapseForm">minimize</button>
+    </div>
+  </div>
+</form>
+    </section>
+  </section>
+</main>
 
   <script src="script.js"></script>
 </body>
