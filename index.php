@@ -64,7 +64,7 @@ $entries = $journal["entries"];
   <textarea 
     id="messageInput"
     name="message" 
-    placeholder="write a few words from today..." 
+    placeholder="click here to write a few words from today..." 
     required></textarea>
 </div>
 
